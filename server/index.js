@@ -8,8 +8,8 @@ const axios = require('axios');
 app.use(express.json());
 app.use(cors());
 
-const getTargetHTML = (targetUrl) => {
-  return axios.get(targetUrl)
+const getTargetHTML = (url) => {
+  return axios.get(url)
   .then((res) => {
     return res.data
   })
@@ -18,15 +18,20 @@ const getTargetHTML = (targetUrl) => {
   });
 };
 
-const testUrl = 'https://google.com';
-getTargetHTML(testUrl).then((data) => {
-  let title = data.split('title>')[1];
-  if (title) {
-    title = title.split('<')[0];
-    console.log(title);
-  } else {
-    console.log('invalid url');
-  }
-});
+app.get('/targetUrl', (req, res) => {
+  const targetUrl = req.body.target;
+  getTargetHTML(targetUrl).then((data) => {
+    let title = data.split('<title')[1];
+    if (title) {
+      title = title.split('<')[0];
+      title = title.split('>')[1];
+      res.status(200).send(title);
+    } else {
+      res.status(404).send('invalid url');
+    }
+  });
+})
+
+
 
 app.listen(port, () => console.log(`server running on port ${port}.`));
