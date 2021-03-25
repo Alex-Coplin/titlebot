@@ -19,10 +19,10 @@ const getTargetHTML = (url) => {
 };
 
 app.get('/targetUrl', (req, res) => {
-  const targetUrl = req.body.target;
+  const targetUrl = req.query.target;
   getTargetHTML(targetUrl).then((data) => {
-    let title = data.split('<title')[1];
-    if (title) {
+    if (data) {
+      let title = data.split('<title')[1];
       title = title.split('<')[0];
       title = title.split('>')[1];
       res.status(200).send(title);
