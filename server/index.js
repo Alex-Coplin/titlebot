@@ -20,6 +20,7 @@ const getTargetHTML = (url) => {
 
 app.get('/targetUrl', (req, res) => {
   const targetUrl = req.query.target;
+  console.log(targetUrl);
   getTargetHTML(targetUrl).then((data) => {
     if (data) {
       let title = data.split('<title')[1];
