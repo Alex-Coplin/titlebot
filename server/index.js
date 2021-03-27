@@ -5,6 +5,13 @@ const app = express();
 const port = 1234;
 const axios = require('axios');
 
+app.get('/', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, '../dist')});
+});
+app.get('/dist/index.js', (req, res) => {
+  res.sendFile('index.js', {root: path.join(__dirname, '../dist')});
+});
+
 app.use(express.json());
 app.use(cors());
 
@@ -20,7 +27,6 @@ const getTargetHTML = (url) => {
 
 app.get('/targetUrl', (req, res) => {
   const targetUrl = req.query.target;
-  console.log(targetUrl);
   getTargetHTML(targetUrl).then((data) => {
     if (data) {
       let title = data.split('<title')[1];
@@ -31,7 +37,7 @@ app.get('/targetUrl', (req, res) => {
       res.status(404).send('invalid url');
     }
   });
-})
+});
 
 
 

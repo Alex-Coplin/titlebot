@@ -10,7 +10,7 @@ const ListContainer = (props) => {
               URL: {url}
             </div>
             <div>
-              Page Title: {props.titles[index]}{'\n'}
+              Page Title: {props.titles[index]}
             </div>
           </div>
         );

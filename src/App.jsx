@@ -62,7 +62,7 @@ class App extends React.Component {
           </form>
         </div>
         <div>
-          <ListContainer urls={this.state.urlList} titles={this.  state.titleList} />
+          <ListContainer urls={this.state.urlList} titles={this.state.titleList} />
         </div>
       </div>
     );
