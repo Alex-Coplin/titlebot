@@ -1,6 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import ListContainer from './ListContainer.jsx';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Badge from 'react-bootstrap/Badge';
+import Jumbotron from 'react-bootstrap/Jumbotron';
+import Container from 'react-bootstrap/Container';
 
 class App extends React.Component {
   constructor(props) {
@@ -26,14 +31,14 @@ class App extends React.Component {
       }
     })
     .then((res) => {
-      const oldUrlList = this.state.urlList;
-      const oldTitleList = this.state.titleList;
-      const joinedUrlList = oldUrlList.concat([this.state.targetUrl]);
-      const joinedTitleList = oldTitleList.concat([res.data]);
+      const urlList = this.state.urlList;
+      const titleList = this.state.titleList;
+      urlList.unshift(this.state.targetUrl);
+      titleList.unshift(res.data);
 
       this.setState({
-        urlList: joinedUrlList,
-        titleList: joinedTitleList,
+        urlList: urlList,
+        titleList: titleList,
         targetUrl: ''
       });
     })
@@ -51,19 +56,28 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Container fluid="sm">
         <div>
-          <h1>Title Bot</h1>
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              <h3>Copy/Paste a url here to see the website's title</  h3>
-              <input type="text"  name="targetUrl" value={this.state.  targetUrl} onChange={this.handleChange} />
-            </label>
-            <input type="submit" value="Get Title" />
-          </form>
+          <Jumbotron>
+          <h1>
+            <Badge variant="info">Title Bot</Badge>
+          </h1>
+          <h5>The bot that finds website titles for you</h5>
+          </Jumbotron>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group controlId="formTargetUrl">
+              <Form.Label size="lg">
+                Copy/Paste a url here to see the website's title
+              </Form.Label>
+                <Form.Control size="lg" type="text" name="targetUrl" value=  {this.state.targetUrl} onChange={this.handleChange} />
+            </Form.Group>
+            <Button variant="primary" size="lg" type="submit" block>Get Title</Button>
+          </Form>
         </div>
         <div>
           <ListContainer urls={this.state.urlList} titles={this.state.titleList} />
         </div>
+        </Container>
       </div>
     );
   }

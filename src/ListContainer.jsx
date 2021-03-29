@@ -1,21 +1,22 @@
 import React from 'react';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 const ListContainer = (props) => {
   return (
-    <div>
+    <ListGroup>
       {props.urls.map((url, index) => {
         return (
-          <div>
-            <div>
+          <>
+            <ListGroup.Item variant="dark">
               URL: {url}
-            </div>
-            <div>
+            </ListGroup.Item>
+            <ListGroup.Item variant="light">
               Page Title: {props.titles[index]}
-            </div>
-          </div>
+            </ListGroup.Item>
+          </>
         );
       })}
-    </div>
+    </ListGroup>
   );
 };
 

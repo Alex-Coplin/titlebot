@@ -5,11 +5,12 @@ const app = express();
 const port = 1234;
 const axios = require('axios');
 
-app.get('/', (req, res) => {
-  res.sendFile('index.html', {root: path.join(__dirname, '../dist')});
-});
+
 app.get('/dist/index.js', (req, res) => {
   res.sendFile('index.js', {root: path.join(__dirname, '../dist')});
+});
+app.get('/', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, '../dist')});
 });
 
 app.use(express.json());
@@ -38,7 +39,5 @@ app.get('/targetUrl', (req, res) => {
     }
   });
 });
-
-
 
 app.listen(port, () => console.log(`server running on port ${port}.`));
