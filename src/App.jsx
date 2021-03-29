@@ -25,7 +25,7 @@ class App extends React.Component {
   }
 
   getTargetTitle() {
-    return axios.get('http://localhost:1234/targetUrl', {
+    return axios.get('/targetUrl', {
       params: {
         target: this.state.targetUrl
       }
