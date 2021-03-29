@@ -6,14 +6,14 @@ const ListContainer = (props) => {
     <ListGroup>
       {props.urls.map((url, index) => {
         return (
-          <>
-            <ListGroup.Item variant="dark">
+          <ListGroup >
+            <ListGroup.Item variant="secondary">
               URL: {url}
             </ListGroup.Item>
-            <ListGroup.Item variant="light">
+            <ListGroup.Item variant="">
               Page Title: {props.titles[index]}
             </ListGroup.Item>
-          </>
+          </ListGroup>
         );
       })}
     </ListGroup>

@@ -65,7 +65,7 @@ class App extends React.Component {
           <h5>The bot that finds website titles for you</h5>
           </Jumbotron>
           <Form onSubmit={this.handleSubmit}>
-            <Form.Group controlId="formTargetUrl">
+            <Form.Group controlId="formTargetUrl" variant="secondary">
               <Form.Label size="lg">
                 Copy/Paste a url here to see the website's title
               </Form.Label>
