@@ -12,3 +12,7 @@
 #### Title Bot is built with a React.js front-end and is styled with React-bootstrap.
 #### The app is served from an Express/Node.js server and requests are handled by Axios.
 #### All client-side code is transpiled with webpack and babel.
+
+# Deployment
+#### Title Bot is dockerized and deployed to Heroku.
+#### The app can be found at https://murmuring-peak-19995.herokuapp.com/
